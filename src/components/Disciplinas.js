@@ -26,7 +26,7 @@ export default function Disciplinas() {
       ementa
     };
 
-    const request = axios.post("http://localhost:5000/disciplina", body);
+    const request = axios.post("https://trabalho3-integracaodesistemas.herokuapp.com/disciplina", body);
 
     request.then(response => {
       setCodigo("");
@@ -48,7 +48,7 @@ export default function Disciplinas() {
 
   function renderDisciplinas(){
 
-    const request = axios.get(`http://localhost:5000/disciplina`);
+    const request = axios.get(`https://trabalho3-integracaodesistemas.herokuapp.com/disciplina`);
 
     request.then(response => {
       setDisciplinas(response.data);
@@ -70,7 +70,7 @@ export default function Disciplinas() {
       codigo: codigoPesquisa
     };
 
-    const request = axios.post("http://localhost:5000/codigo", body);
+    const request = axios.post("https://trabalho3-integracaodesistemas.herokuapp.com/codigo", body);
 
     request.then(response => {
       setCodigoPesquisa("");

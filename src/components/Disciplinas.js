@@ -15,6 +15,7 @@ export default function Disciplinas() {
   const [disciplinas, setDisciplinas] = useState([]);
   const [codigoPesquisa, setCodigoPesquisa] = useState('');
   const [disciplionaSolo, setDisciplionaSolo] = useState([]);
+  const api = "https://worker-production-dff8.up.railway.app/disciplina";
 
   function submitData() {
     const body = {
@@ -26,7 +27,9 @@ export default function Disciplinas() {
       ementa
     };
 
-    const request = axios.post("https://trabalho3-integracaodesistemas.herokuapp.com/disciplina", body);
+    const request = axios.post("https://worker-production-dff8.up.railway.app/disciplina", body);
+
+
 
     request.then(response => {
       setCodigo("");
@@ -48,7 +51,8 @@ export default function Disciplinas() {
 
   function renderDisciplinas(){
 
-    const request = axios.get(`https://trabalho3-integracaodesistemas.herokuapp.com/disciplina`);
+    const request = axios.get("https://worker-production-dff8.up.railway.app/disciplina");
+
 
     request.then(response => {
       setDisciplinas(response.data);
@@ -69,8 +73,8 @@ export default function Disciplinas() {
     const body = {
       codigo: codigoPesquisa
     };
+    const request = axios.post("https://worker-production-dff8.up.railway.app/codigo", body);
 
-    const request = axios.post("https://trabalho3-integracaodesistemas.herokuapp.com/codigo", body);
 
     request.then(response => {
       setCodigoPesquisa("");
@@ -128,7 +132,7 @@ export default function Disciplinas() {
 
           <CodigoDisciplina>
                     <Form2 onSubmit={submitCodigo}>
-                      <input type="text" placeholder="Digite o codigo" id="codigo" value={codigoPesquisa} onChange={e => setCodigoPesquisa(e.target.value)}/>
+                      <input type="text" placeholder="Digite o código" id="codigo" value={codigoPesquisa} onChange={e => setCodigoPesquisa(e.target.value)}/>
                       <button type='submit' > Procurar disciplina </button>
                    </Form2>
 
@@ -161,7 +165,8 @@ export default function Disciplinas() {
 }
 
 const Moises=styled.div`
-display: flex;
+  display: flex;
+  margin-top: 20px;
 `
 
 const CodigoDisciplina=styled.div`
@@ -182,6 +187,7 @@ const Recommendation = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   box-sizing: border-box;
+  
   img{
     height: 100px;
     width: 100px;
@@ -213,7 +219,11 @@ const Titles = styled.div`
 const DisciplinasRender = styled.div`
   display: flex;
   flex-direction: column;
-  
+  #divContent{
+    overflow:auto; 
+  }
+  height: 400px;
+  overflow-y: scroll;
 `
 
 const Container = styled.div`
